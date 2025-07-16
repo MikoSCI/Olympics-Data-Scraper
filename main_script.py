@@ -35,14 +35,14 @@ for BASE_URL in tqdm(BASE_URLS, desc="All editions"):
         for discipline_url in tqdm(discipline_links, desc="  Disciplines", leave=False):
             try:
                 resp = requests.get(discipline_url)
-                time.sleep(1)
+                time.sleep(10)
                 sub_soup = BeautifulSoup(resp.text, 'html.parser')
                 result_links = [urljoin(BASE_URL, a['href']) for a in sub_soup.select('a[href*="/results/"]')]
 
                 for link in tqdm(result_links, desc="    Results", leave=False):
                     try:
                         result_resp = requests.get(link)
-                        time.sleep(1)
+                        time.sleep(10)
                         result_soup = BeautifulSoup(result_resp.text, 'html.parser')
                         header_tag = result_soup.find('h1', class_='event_title')
                         event_name = header_tag.get_text(strip=True) if header_tag else 'No header'
