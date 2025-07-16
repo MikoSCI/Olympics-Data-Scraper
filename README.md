@@ -2,15 +2,17 @@
 
 # Olympics Data Scraper
 
-This project is a Python script designed to scrape data from [Olympedia](https://www.olympedia.org/) for various Olympic editions. It extracts results from specified Olympic events, organizes them into structured Excel files, and downloads them automatically. The script is optimized for use in Google Colab and supports concurrent file downloads to improve efficiency.
+This project is a Python script designed to scrape data from [Olympedia](https://www.olympedia.org/) for various Olympic editions. The script retrieves a list of disciplines for each Olympic edition and then collects detailed data about athletes and their results for each discipline. The extracted data is organized into structured Excel files, with each file containing results for a specific Olympic edition.
 
 ## Features
 - Scrapes Olympic event results from multiple editions listed in `BASE_URLS`.
-- Extracts discipline and result data using BeautifulSoup.
-- Saves results as Excel files with separate sheets for each event and a summary sheet with links.
-- Supports concurrent file downloads without waiting for the entire scraping process to complete.
-- Includes progress bars using `tqdm` for better user experience.
+- Fetches a list of disciplines for each Olympic edition.
+- Collects athlete data and results for each discipline, including rankings and event details.
+- Saves results as Excel files with separate sheets for each event and a summary sheet with event links.
+- Uses progress bars (tqdm) for a user-friendly experience.
 - Handles errors gracefully with detailed logging.
+- Respects Olympedia’s robots.txt with a configurable crawl-delay (default: 10 seconds for edition pages).
+
 
 ## Prerequisites
 - Python 3.6 or higher
@@ -44,22 +46,27 @@ This project is a Python script designed to scrape data from [Olympedia](https:/
    ```
    Or, in Google Colab, execute the cell containing the script.
 4. The script will:
-   - Fetch data for each Olympic edition.
-   - Process disciplines and results.
+   - Fetch the list of disciplines for each Olympic edition.
+   - Scrape athlete data and results for each discipline.
    - Save results as Excel files (e.g., `Olympic_Games_2020.xlsx`).
    - Automatically download each file after finishing code processing.
 
+## How It Works
+1. Fetching Disciplines: The script retrieves the list of disciplines for each Olympic edition by parsing the edition’s main page and extracting links to discipline pages.
+2. Scraping Athlete Data: For each discipline, it navigates to result pages, extracts tables containing athlete data (e.g., names, rankings), and organizes them into pandas DataFrames.
+3. Saving Results: The data is saved into Excel files, with one sheet per event containing athlete results and a "Links" sheet listing event names and their URLs.
+
 ## Example Output
 For each Olympic edition, the script generates an Excel file with:
-- A sheet for each event containing result data (e.g., athlete names, rankings).
-- A "links" sheet listing event names and their corresponding URLs.
+- A sheet for each event containing athlete data (e.g., names, rankings, times, or scores).
+- A "Links" sheet listing event names and their corresponding URLs.
 
 Example file: `Olympic_Games_2020.xlsx`
 
 ## Notes
 - The script respects Olympedia’s `robots.txt` with a 10-second delay between requests.
-- Concurrent downloads are handled using Python’s `threading` module to avoid blocking the main loop.
-- Ensure your environment supports `IPython.display.Javascript` for Colab downloads. For non-Colab environments, you may need to modify the download mechanism.
+- Ensure your environment supports google.colab.files.download for automatic downloads in Colab. For non-Colab environments, you may need to modify the download mechanism.
+- The script handles cases where tables or headers are missing, logging errors for transparency.
 
 ## Contributing
 Contributions are welcome! Please:
