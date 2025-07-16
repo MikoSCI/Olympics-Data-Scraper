@@ -47,7 +47,7 @@ This project is a Python script designed to scrape data from [Olympedia](https:/
    - Fetch data for each Olympic edition.
    - Process disciplines and results.
    - Save results as Excel files (e.g., `Olympic_Games_2020.xlsx`).
-   - Automatically download each file as it’s created.
+   - Automatically download each file after finishing code processing.
 
 ## Example Output
 For each Olympic edition, the script generates an Excel file with:
