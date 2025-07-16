@@ -52,12 +52,12 @@ This project is a Python script designed to scrape data from [Olympedia](https:/
 ## Example Output
 For each Olympic edition, the script generates an Excel file with:
 - A sheet for each event containing result data (e.g., athlete names, rankings).
-- A "Linki" sheet listing event names and their corresponding URLs.
+- A "links" sheet listing event names and their corresponding URLs.
 
 Example file: `Olympic_Games_2020.xlsx`
 
 ## Notes
-- The script respects Olympedia’s `robots.txt` with a 1-second delay between requests (though a 10-second delay is recommended for compliance).
+- The script respects Olympedia’s `robots.txt` with a 10-second delay between requests.
 - Concurrent downloads are handled using Python’s `threading` module to avoid blocking the main loop.
 - Ensure your environment supports `IPython.display.Javascript` for Colab downloads. For non-Colab environments, you may need to modify the download mechanism.
 
