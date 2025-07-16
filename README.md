@@ -36,11 +36,11 @@ This project is a Python script designed to scrape data from [Olympedia](https:/
 3. If running in Google Colab, ensure the notebook has access to the internet for HTTP requests.
 
 ## Usage
-1. Open the script (`scraper.py`) in your preferred environment (e.g., Google Colab, Jupyter Notebook, or local Python).
+1. Open the script (`main_script.py`) in your preferred environment (e.g., Google Colab, Jupyter Notebook, or local Python).
 2. Update the `BASE_URLS` list in the script with the Olympedia edition URLs you want to scrape.
 3. Run the script:
    ```bash
-   python scraper.py
+   python main_script.py
    ```
    Or, in Google Colab, execute the cell containing the script.
 4. The script will:
